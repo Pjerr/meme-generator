@@ -5,33 +5,57 @@ export class MainContent extends React.Component {
     super(props);
     this.state = {
       currentMeme: null,
+      topText: "",
+      bottomText: "",
+      allMemeImages: memesData.data.memes,
     };
     this.getMemeImage = this.getMemeImage.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   getMemeImage() {
-    const memesArrray = memesData.data.memes;
-    const i = Math.floor(Math.random() * memesArrray.length);
-    const meme = memesArrray[i];
-    this.setState({ currentMeme: meme }, () => {
-      console.log(this.state.currentMeme);
-    });
+    const i = Math.floor(Math.random() * this.state.allMemeImages.length);
+    const meme = this.state.allMemeImages[i];
+    this.setState({ currentMeme: meme });
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({ [name]: value });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(this.state);
   }
 
   render() {
     return (
-      <div className="main-form">
-        <div className="user-input-container">
-          <input type="text" placeholder="Top text" />
-          <input type="text" placeholder="Bottom text" />
-        </div>
-        <button
-          type="button"
-          className="form-button"
-          onClick={this.getMemeImage}
-        >
-          Generate meme image
-        </button>
+      <div className="main-wrapper">
+        <form onSubmit={this.handleSubmit} className="main-form">
+          <div className="user-input-container">
+            <input
+              type="text"
+              placeholder="Top text"
+              name="topText"
+              onChange={this.handleInputChange}
+              value={this.state.topText}
+            />
+            <input
+              type="text"
+              placeholder="Bottom text"
+              name="bottomText"
+              onChange={this.handleInputChange}
+              value={this.state.bottomText}
+            />
+          </div>
+          <button className="form-button" onClick={this.getMemeImage}>
+            Generate meme image
+          </button>
+        </form>
         {this.state.currentMeme !== null && (
           <img
             src={this.state.currentMeme.url}
