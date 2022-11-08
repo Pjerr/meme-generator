@@ -1,5 +1,5 @@
 import React from "react";
-import memesData from "../memesData";
+import { getAllMemes } from "../services/api";
 export class MainContent extends React.Component {
   constructor(props) {
     super(props);
@@ -7,8 +7,13 @@ export class MainContent extends React.Component {
       currentMeme: null,
       topText: "",
       bottomText: "",
-      allMemeImages: memesData.data.memes,
+      allMemeImages: [],
     };
+
+    getAllMemes().then((data) => {
+      this.state.allMemeImages = data;
+    });
+
     this.getMemeImage = this.getMemeImage.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,7 +34,6 @@ export class MainContent extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
   }
 
   render() {
