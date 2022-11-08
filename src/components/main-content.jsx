@@ -56,13 +56,21 @@ export class MainContent extends React.Component {
             Generate meme image
           </button>
         </form>
-        {this.state.currentMeme !== null && (
-          <img
-            src={this.state.currentMeme.url}
-            alt="slika"
-            className="meme-image"
-          ></img>
-        )}
+        <div className="meme">
+          {this.state.currentMeme !== null && (
+            <img
+              src={this.state.currentMeme.url}
+              alt="slika"
+              className="meme-image"
+            ></img>
+          )}
+          {this.state.topText && (
+            <h2 className="top-text meme-text">{this.state.topText}</h2>
+          )}
+          {this.state.bottomText && (
+            <h2 className="bottom-text meme-text">{this.state.bottomText}</h2>
+          )}
+        </div>
       </div>
     );
   }
