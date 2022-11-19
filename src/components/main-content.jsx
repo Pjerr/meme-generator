@@ -7,11 +7,11 @@ export class MainContent extends React.Component {
       currentMeme: null,
       topText: "",
       bottomText: "",
-      allMemeImages: [],
+      allMemes: [],
     };
 
     getAllMemes().then((data) => {
-      this.state.allMemeImages = data;
+      this.state.allMemes = data;
     });
 
     this.getMemeImage = this.getMemeImage.bind(this);
@@ -20,8 +20,8 @@ export class MainContent extends React.Component {
   }
 
   getMemeImage() {
-    const i = Math.floor(Math.random() * this.state.allMemeImages.length);
-    const meme = this.state.allMemeImages[i];
+    const i = Math.floor(Math.random() * this.state.allMemes.length);
+    const meme = this.state.allMemes[i];
     this.setState({ currentMeme: meme });
   }
 

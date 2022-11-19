@@ -24,7 +24,13 @@ body {
 .title {
   margin-left: 2rem;
   font-size: x-large;
+  text-decoration: none;
+  color: white;
 }
+.title:hover {
+  color: #f626d3;
+}
+
 .main-wrapper {
   display: flex;
   flex-direction: column;

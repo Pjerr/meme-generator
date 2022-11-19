@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import memeFace from "../assets/images/meme-face.png";
 
 export class Header extends React.Component {
@@ -6,7 +7,12 @@ export class Header extends React.Component {
     return (
       <header className="header">
         <img src={memeFace} alt="logo" className="logo"></img>
-        <p className="title">Meme generator</p>
+        <Link className="title" to="/">
+          Meme generator
+        </Link>
+        <Link className="title" to="/about">
+          About
+        </Link>
       </header>
     );
   }
